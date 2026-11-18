@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preparing Video — SignBridge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body class="page-processing" data-job-id="{{ job_id }}">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="/" class="brand" aria-label="SignBridge Home">
+          <img src="/static/assets/logo.svg" alt="" class="brand-mark" width="24" height="24" />
+          <span class="brand-name">SignBridge</span>
+        </a>
+
+        <nav class="topnav" aria-label="Primary navigation">
+          <a href="/" class="nav-link">Translate</a>
+          <a href="/#recent-jobs" class="nav-link">Recent videos</a>
+        </nav>
+
+        <div class="topbar-actions">
+          <a href="/" class="btn btn-secondary btn-sm">New video</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container container-narrow">
+      <section class="processing-view" aria-live="polite">
+        <div class="processing-head">
+          <div class="processing-title-group">
+            <h1 id="job-title" class="processing-title">Preparing video…</h1>
+            <p id="job-meta" class="meta-line">Loading status</p>
+          </div>
+          <span id="job-status-text" class="status-text">Processing</span>
+        </div>
+
+        <div class="progress-block">
+          <div class="progress-label-row">
+            <span id="stage-label">Starting…</span>
+            <span id="overall-progress-pct" class="mono tabular">0%</span>
+          </div>
+          <div class="progress-track">
+            <div id="overall-progress-bar" class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <ol id="stage-list" class="pipeline-stages" aria-label="Processing steps">
+          <li class="pipeline-stage" data-stage="ingesting">
+            <span class="stage-name">Receiving video</span>
+            <span class="stage-state">Pending</span>
+          </li>
+          <li class="pipeline-stage" data-stage="extracting_audio">
+            <span class="stage-name">Extracting audio track</span>
+            <span class="stage-state">Pending</span>
+          </li>
+          <li class="pipeline-stage" data-stage="transcribing">
+            <span class="stage-name">Transcribing speech</span>
+            <span class="stage-state">Pending</span>
+          </li>
+          <li class="pipeline-stage" data-stage="translating">
+            <span class="stage-name">Translating to ASL grammar</span>
+            <span class="stage-state">Pending</span>
+          </li>
+          <li class="pipeline-stage" data-stage="matching">
+            <span class="stage-name">Matching ASL recordings</span>
+            <span class="stage-state">Pending</span>
+          </li>
+          <li class="pipeline-stage" data-stage="compiling">
+            <span class="stage-name">Building interpreter track</span>
+            <span class="stage-state">Pending</span>
+          </li>
+          <li class="pipeline-stage" data-stage="completed">
+            <span class="stage-name">Finalizing playback</span>
+            <span class="stage-state">Pending</span>
+          </li>
+        </ol>
+
+        <div id="preview-box" class="transcript-preview-box hidden">
+          <h2 class="preview-title">Transcript preview</h2>
+          <p id="transcript-preview-text" class="preview-text"></p>
+        </div>
+
+        <div id="error-box" class="inline-alert inline-alert-error hidden" role="alert">
+          <p id="error-message"></p>
+          <div class="alert-actions">
+            <a href="/" class="btn btn-secondary btn-sm">Back to upload</a>
+          </div>
+        </div>
+
+        <div id="complete-actions" class="complete-actions hidden">
+          <a id="open-player-link" href="/player/{{ job_id }}" class="btn btn-primary">
+            Open player
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-bar">
+        <div class="footer-copy">© 2026 SignBridge. All rights reserved.</div>
+        <div class="footer-meta">Made by SignBridge · ASL clips via WLASL</div>
+      </div>
+    </footer>
+
+    <script src="/static/js/processing.js"></script>
+  </body>
+</html>

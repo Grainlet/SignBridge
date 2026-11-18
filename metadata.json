@@ -1,0 +1,6 @@
+{
+  "name": "SignBridge",
+  "description": "AI-powered sign language video accessibility platform with offline Vosk transcription and synchronized ASL playback.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

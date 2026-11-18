@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignBridge — Synchronized ASL Video Interpreter</title>
+    <meta
+      name="description"
+      content="Upload a video or paste a YouTube link to generate offline speech transcripts and synchronized human ASL interpreter playback."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body class="page-home">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a href="/" class="brand" aria-label="SignBridge Home">
+          <img src="/static/assets/logo.svg" alt="" class="brand-mark" width="24" height="24" />
+          <span class="brand-name">SignBridge</span>
+        </a>
+
+        <nav class="topnav" aria-label="Primary navigation">
+          <a href="#ingest" class="nav-link">Translate</a>
+          <a href="#recent-jobs" class="nav-link">Recent videos</a>
+        </nav>
+
+        <div class="topbar-actions">
+          <button type="button" id="topbar-browse-btn" class="btn btn-primary btn-sm">
+            Select video
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container container-home">
+      <section class="intro">
+        <h1 class="intro-title">Add an ASL interpreter to any video.</h1>
+        <p class="intro-subtitle">
+          Upload a video file or paste a public YouTube link. Speech is transcribed locally and paired
+          with prerecorded human ASL clips in a synchronized player.
+        </p>
+      </section>
+
+      <section id="ingest" class="ingest-workspace" aria-label="Video input">
+        <form id="upload-form" class="upload-area" novalidate>
+          <input
+            id="video-file-input"
+            name="video"
+            type="file"
+            accept=".mp4,.mov,.mkv,.webm,.avi,.m4v,video/*"
+            class="sr-only"
+            aria-label="Choose video file"
+          />
+
+          <button
+            type="button"
+            id="dropzone"
+            class="dropzone"
+            aria-label="Drop video file here or click to browse"
+          >
+            <svg
+              class="dropzone-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path d="M12 16V4m0 0-4 4m4-4 4 4" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M4 16.5v1.75A1.75 1.75 0 0 0 5.75 20h12.5A1.75 1.75 0 0 0 20 18.25V16.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="dropzone-title" id="dropzone-title">
+              Drop a video file here, or click to browse
+            </span>
+            <span class="dropzone-hint" id="dropzone-hint">
+              MP4, MOV, MKV, WebM, AVI up to 500 MB
+            </span>
+          </button>
+
+          <div id="upload-progress-wrap" class="upload-progress hidden" aria-live="polite">
+            <div class="progress-label-row">
+              <span id="upload-progress-label">Uploading video…</span>
+              <span id="upload-progress-pct" class="mono tabular">0%</span>
+            </div>
+            <div class="progress-track">
+              <div id="upload-progress-bar" class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div id="upload-error" class="inline-alert inline-alert-error hidden" role="alert"></div>
+
+          <div id="upload-submit-row" class="upload-submit-row hidden">
+            <button type="button" id="upload-clear-btn" class="btn btn-ghost btn-sm">Clear</button>
+            <button type="submit" id="upload-submit-btn" class="btn btn-primary">
+              Start translation
+            </button>
+          </div>
+        </form>
+
+        <div class="ingest-divider" role="separator">
+          <span>or paste a YouTube link</span>
+        </div>
+
+        <form id="youtube-form" class="youtube-inline-form" novalidate>
+          <label for="youtube-url-input" class="sr-only">YouTube Video URL</label>
+          <div class="youtube-input-row">
+            <input
+              id="youtube-url-input"
+              name="url"
+              type="url"
+              inputmode="url"
+              autocomplete="off"
+              placeholder="https://www.youtube.com/watch?v=..."
+              class="text-input"
+              required
+            />
+            <button type="submit" id="youtube-submit-btn" class="btn btn-secondary">
+              Import
+            </button>
+          </div>
+          <div id="youtube-error" class="inline-alert inline-alert-error hidden" role="alert"></div>
+        </form>
+      </section>
+
+      <section id="recent-jobs" class="recent-section" aria-labelledby="recent-jobs-heading">
+        <div class="recent-head">
+          <h2 id="recent-jobs-heading" class="recent-title">Recent videos</h2>
+          <button type="button" id="refresh-jobs-btn" class="text-action-btn">Refresh</button>
+        </div>
+
+        <div id="recent-jobs-container" class="jobs-list" aria-live="polite">
+          <p class="empty-state">Loading recent videos…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-bar">
+        <div class="footer-copy">© 2026 SignBridge. All rights reserved.</div>
+        <div class="footer-meta">Made by SignBridge · ASL clips via WLASL</div>
+      </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
